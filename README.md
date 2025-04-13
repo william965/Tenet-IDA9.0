@@ -1,106 +1,97 @@
-# 效果图
+# Tenet Trace Explorer (修改版)
 
-## 对抗虚假控制流、各种未知的混淆，可以使用单步执行
+本项目是对 [Tenet Trace Explorer](https://github.com/gaasedelen/tenet) 的修改版本，进行了一些改进和适配。
+
+## 效果图
+
+### 对抗虚假控制流、各种未知的混淆
+
+使用单步执行可以有效对抗这些混淆。
 
 ![image-20250413124003343](./README.assets/image-20250413124003343.png)
 
-## 分析算法可便捷查看内存变化信息
+### 分析算法
+
+分析算法时可便捷查看内存变化信息。
 
 ![image-20250413124106913](./README.assets/image-20250413124106913.png)
 
+### 时间回溯调试
 
-
-## 支持向上单步，向下单步，时间回溯
+支持向上单步、向下单步以及时间回溯。
 
 ![CleanShot_2025_04_13_at_12_42_13](./README.assets/CleanShot_2025_04_13_at_12_42_13.png)
 
-红色为已经走过的路径，蓝色为未来要走的
+*   红色为已经走过的路径。
+*   蓝色为未来要走的路径。
 
-我们能明确知道，BLR X8跳转到了B.CS 并且知道B.CS向左分支跳转
+例如，我们可以明确知道 `BLR X8` 跳转到了 `B.CS`，并且知道 `B.CS` 进行了向左的分支跳转。
 
+### 寄存器跟踪
 
+![CleanShot_2025_04_13_at_15_50_56](./README.assets/CleanShot_2025_04_13_at_15_50_56.png)
 
+有两个左右的小按钮，可以找涉及到这个寄存器的上一条汇编的位置
 
+### 时间旅行
 
+![CleanShot_2025_04_13_at_15_52_14](./README.assets/CleanShot_2025_04_13_at_15_52_14.png)
 
+## 主要改动
 
-# 我改动了哪些地方
+1.  支持了 AArch64 架构的 Trace 格式导入。
+2.  解决了 ASLR 地址随机化后的基地址识别问题。
+3.  增加了单步调试等多个快捷键。
+4.  修复了原版存在的一些 Bug。
+5.  支持 IDA Pro 8.x 及 9.0。
+6.  美化了部分 UI 显示。
 
-1. 支持了ARCH64架构的格式导入
-2. 解决了ALSR的识别
-3. 增加了单步调试等多个快捷键
-4. 修复了大大小小原来出现的bug
-5. 支持了ida9.0
-6. 美化了UI
+## 如何使用
 
+1.  **安装插件**
+    *   在 IDA Python 窗口输入以下命令获取插件目录路径：
+        ```python
+        import idaapi, os; print(os.path.join(idaapi.get_user_idadir(), "plugins"))
+        ```
+    *   将 `tenet` 文件夹和 `tenet_plugin.py` 文件一起复制到上一步获取的 `plugins` 文件夹中。
+    *   重启 IDA Pro。
 
+2.  **加载 Trace 文件**
+    *   打开 `demo` 文件夹，将 `libRequestEncoder.so` 文件拖入 IDA Pro 进行分析。
+    *   在 IDA 窗口左上角选择 `File -> Load File -> Tenet Trace File`。
+    *   选择 `demo` 文件夹中的 `log.txt` 文件打开。
 
-# 如何使用
+3.  **开始追踪**
+    *   在 IDA 右下角的 `Position` 输入框中输入 `1`，跳转到 Trace 的起始位置。
+    *   或者使用快捷键（见下文）开始单步调试。
 
-1. 安装插件
+## 快捷键
 
-   `import idaapi, os; os.path.join(idaapi.get_user_idadir(), "plugins")`
+![Shortcuts Configuration](./README.assets/CleanShot_2025_04_13_at_12_49_37.png)
 
-   ida python输入后得到路径
+![Shortcuts List](./README.assets/CleanShot_2025_04_13_at_12_49_57.png)
 
-   把tenet文件夹和py文件一起放到文件夹里
+*   `prev_insn`: 回到上一个执行位置。
+*   `step_into`: 步入（F7）。
+*   `step_out`: 步出函数（有 Bug）。
+*   `step_over`: 步过（F8）。
+*   `next_execution`: 跳转到当前选中地址的下一次执行位置。
+    *   例如，在以下循环中：
+        ```c
+        for(int i=0; i<10; i++){
+            printf("%d\n", i); // 假设当前选中此行
+        }
+        ```
+    *   如果当前 `i` 的值是 `0`，在 `printf` 行使用 `next_execution` 快捷键，则会直接跳转到下一次执行 `printf` 时（即 `i` 为 `1` 时）的状态。
 
-2. 打开demo文件夹，将so拖入ida
-3. IDA窗口左上角 File->Load File -> Tenet Trace File 打开 log.txt
-4. 右下角Position输入1 开始最初的Trace 或者快捷键 Ctrl+shift+S /Ctrl+shift+N
+## 更多实用技巧（原版作者）
 
+请参考原版作者的博客文章：
+[Tenet: A Trace Explorer for Reverse Engineers](https://blog.ret2.io/2021/04/20/tenet-trace-explorer/)
 
+## Trace 格式
 
-# 快捷键问题
+Trace 文件的格式规范可以参考原版仓库中的 `tracers` 目录：
+[https://github.com/gaasedelen/tenet/tree/master/tracers](https://github.com/gaasedelen/tenet/tree/master/tracers)
 
-![CleanShot_2025_04_13_at_12_49_37](./README.assets/CleanShot_2025_04_13_at_12_49_37.png)
-
-Shortcuts
-
-![CleanShot_2025_04_13_at_12_49_57](./README.assets/CleanShot_2025_04_13_at_12_49_57.png)
-
-prev_insn 回到上一个位置
-
-step_into 步入
-
-Step_out 步出函数（有bug)
-
-step_over 步过
-
-Next_execution 下一个时间点（需要鼠标选中位置）
-
-比如一个
-
-```
-for(int i=0;i<10;i++){
-		printf(i);
-}
-```
-
-我们当前的i是0
-
-我们在printf使用Next_execution 那么下一次i=1
-
-在下一次以此类推
-
-
-
-
-
-## 更多实用技巧（作者原本的）
-
-https://blog.ret2.io/2021/04/20/tenet-trace-explorer/
-
-
-
-
-
-# Trace格式
-
-https://github.com/gaasedelen/tenet/tree/master/tracers
-
-
-
-但是我的Trace有ALSR的定制，请按照demo文件夹的第一行输出即可
-
-其他的和作者保持一致
+**注意：** 本项目使用的 Trace 格式针对 ASLR 进行了定制修改。请参考 `demo` 文件夹中 `log.txt` 的第一行输出格式。其他部分与原版作者的格式保持一致。
