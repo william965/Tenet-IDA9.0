@@ -8,19 +8,19 @@
 
 使用单步执行可以有效对抗这些混淆。
 
-![image-20250413124003343](./README.assets/image-20250413124003343.png)
+![image-20250413124003343](https://qiude1tuchuang.oss-cn-beijing.aliyuncs.com/blog/202504131554975.png)
 
 ### 分析算法
 
 分析算法时可便捷查看内存变化信息。
 
-![image-20250413124106913](./README.assets/image-20250413124106913.png)
+![image-20250413124106913](https://qiude1tuchuang.oss-cn-beijing.aliyuncs.com/blog/202504131554993.png)
 
 ### 时间回溯调试
 
 支持向上单步、向下单步以及时间回溯。
 
-![CleanShot_2025_04_13_at_12_42_13](./README.assets/CleanShot_2025_04_13_at_12_42_13.png)
+![CleanShot_2025_04_13_at_12_42_13](https://qiude1tuchuang.oss-cn-beijing.aliyuncs.com/blog/202504131554004.png)
 
 *   红色为已经走过的路径。
 *   蓝色为未来要走的路径。
@@ -29,13 +29,13 @@
 
 ### 寄存器跟踪
 
-![CleanShot_2025_04_13_at_15_50_56](./README.assets/CleanShot_2025_04_13_at_15_50_56.png)
+![CleanShot_2025_04_13_at_15_50_56](https://qiude1tuchuang.oss-cn-beijing.aliyuncs.com/blog/202504131554015.png)
 
 有两个左右的小按钮，可以找涉及到这个寄存器的上一条汇编的位置
 
 ### 时间旅行
 
-![CleanShot_2025_04_13_at_15_52_14](./README.assets/CleanShot_2025_04_13_at_15_52_14.png)
+![CleanShot_2025_04_13_at_15_52_14](https://qiude1tuchuang.oss-cn-beijing.aliyuncs.com/blog/202504131554026.png)
 
 ## 主要改动
 
@@ -67,9 +67,9 @@
 
 ## 快捷键
 
-![Shortcuts Configuration](./README.assets/CleanShot_2025_04_13_at_12_49_37.png)
+![Shortcuts Configuration](https://qiude1tuchuang.oss-cn-beijing.aliyuncs.com/blog/202504131554037.png)
 
-![Shortcuts List](./README.assets/CleanShot_2025_04_13_at_12_49_57.png)
+![Shortcuts List](https://qiude1tuchuang.oss-cn-beijing.aliyuncs.com/blog/202504131554046.png)
 
 *   `prev_insn`: 回到上一个执行位置。
 *   `step_into`: 步入（F7）。
