@@ -1,6 +1,12 @@
 # Tenet Trace Explorer (修改版)
 
 本项目是对 [Tenet Trace Explorer](https://github.com/gaasedelen/tenet) 的修改版本，进行了一些改进和适配。
+# 更新日志：
+20250417 增加了由Logan大佬写的unidbg tracer 详细请打开tracer文件夹的README查看使用方法
+# 未来方向
+1.做初始化内存扫描，在trace开始前保存全局内存状态。
+2.拓展内存扫描,每次内存状态发生读写,读取windowsize大小的内存保存进数据
+3.后端剥离python,采用c++等编译型语言开启后端提供数据，防止在ida这么容易崩的母体环境雪上加霜
 
 ## 效果图
 
